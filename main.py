@@ -7,6 +7,13 @@ from core.handlers.admins.userupdate import del_user, ban_user, unban_user
 from core.filters.authentication import AuthenticationFilter
 from core.filters.isadmin import isAdmin
 from core.middlewaries.verification import AccessVerificationMiddleware
+"""
+Для хоста pythonanywhere
+1. Устанавливаем модуль:    pip install aiohttp-socks
+2. Импортируем модуль:      from aiogram.client.session.aiohttp import AiohttpSession
+3. Создать сессию:          session = AiohttpSession(proxy='http://proxy.server:3128') # в proxy указан прокси сервер pythonanywhere, он нужен для подключения
+4. Передать в Bot:          bot = Bot(token='...', session=session)
+"""
 async def main():
     dp = Dispatcher()
     bot = Bot(token=config.TOKEN)
@@ -25,3 +32,4 @@ if __name__ == '__main__':
     asyncio.run(main())
 
 #TODO реализовать user handler для обработки "Каталог" и "Профиль"
+#TODO Сделать тротлинг миделварь
